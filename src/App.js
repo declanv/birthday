@@ -1,22 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import './App.scss';
+const randomUserUrl = 'https://randomuser.me/api/?results=20?nat=us,ca?inc=id,name,gender,nat,dob,picture';
 
 class BirthdayList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users : null,
+    };
+  }
+  getUsers () {
 
+  }
   render() {
     return (
-        <h1>Birthday Tracker</h1>
+        <div id='appContainer'>
+          <h1>Birthday Tracker</h1>
+        </div>
     );
   };
 }
 
-
-// ========================================
-
-ReactDOM.render(
-    <BirthdayList />,
-    document.getElementById('root')
-);
 
 export default BirthdayList;
