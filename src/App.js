@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import axios from 'axios';
 import './App.scss';
-const randomUserUrl = 'https://randomuser.me/api/?results=20?nat=us,ca?inc=id,name,gender,nat,dob,picture';
+const randomUserUrl = 'https://randomuser.me/api/?results=20&nat=us,ca&inc=id,name,gender,nat,dob,picture&noinfo';
 
 class BirthdayList extends React.Component {
   constructor(props) {
@@ -12,7 +12,23 @@ class BirthdayList extends React.Component {
     };
   }
   getUsers () {
+    axios.get(randomUserUrl)
+        .then(response => {
 
+          this.setState(
+              {
+                users: response.data.results
+              }
+          )
+
+          console.log(response.data.results);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+  }
+  componentDidMount() {
+    this.getUsers();
   }
   render() {
     return (
