@@ -8,32 +8,36 @@ class BirthdayList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users : null,
+      users : [],
     };
   }
-  getUsers () {
+  componentDidMount() {
     axios.get(randomUserUrl)
         .then(response => {
-
-          this.setState(
-              {
-                users: response.data.results
-              }
-          )
-
+          this.setState({users: response.data.results});
           console.log(response.data.results);
         })
         .catch(error => {
           console.log(error);
         });
   }
-  componentDidMount() {
-    this.getUsers();
-  }
   render() {
+    let userList = this.state.users.length > 0 ? this.state.users.map((step, i) => {
+        let user = this.state.users[i];
+        return (
+            <div key={user.dob.date}>
+              <p>
+                {user.name.first}
+              </p>
+            </div>
+        )
+      }) : null;
     return (
         <div id='appContainer'>
           <h1>Birthday Tracker</h1>
+          <div>
+            {userList}
+          </div>
         </div>
     );
   };
