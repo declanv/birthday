@@ -3,6 +3,7 @@
 $background-blue: #48C1EC;
 $cake-pink: #FFC0BD;
 $red-accent: #D0021B;
+$card-blue: #71DAE6;
 
 // Mixins
 
@@ -42,7 +43,7 @@ $red-accent: #D0021B;
   }
 }
 @include font-face("Tofino-Regular", "assets/fonts/TofinoProPersonal-Regular", 400, normal, otf);
-@include font-face("Tofino-Wide-Regular", "assets/fonts/TofinoProPersonalWide-Regular", 800, normal, otf);
+@include font-face("Tofino-Wide-Ultra", "assets/fonts/TofinoProPersonalWide-Ultra", 800, normal, otf);
 @include font-face("Tofino-Wide-Thin", "assets/fonts/TofinoProPersonalWide-Thin", 400, normal, otf);
 @include font-face("Tofino-Semibold", "assets/fonts/TofinoProPersonalCond-Semibold", 800, bold, otf);
 @include font-face("Tofino-Light", "assets/fonts/TofinoProPersonalCond-Light", 100, bold, otf);
@@ -50,7 +51,7 @@ $red-accent: #D0021B;
 @include font-face("Tofino-Narrow-Medium", "assets/fonts/TofinoProPersonalNarrow-Book", 300, bold, otf);
 
 @mixin header-font() {
-  font-family: Tofino-Wide-Regular, Arial, Helvetica, sans-serif;
+  font-family: Tofino-Wide-Ultra, Arial, Helvetica, sans-serif;
 }
 
 @mixin button-font() {
@@ -101,7 +102,7 @@ body {
       background-color: $cake-pink;
       padding-top: 2%;
       box-sizing: border-box;
-      border-radius: 20% 20% 0 0%;
+      border-radius: 15% 15% 0 0%;
 
       #frosting-container {
         position: absolute;
@@ -110,14 +111,14 @@ body {
         content: '';
         //border-radius: 20% 20% 0 0%;
         width: 100%;
-        height: 75px;
+        height: 50px;
         overflow: hidden;
         //background-color: white;
         #frosting {
           position: relative;
           display: block;
           content: '';
-          border-radius: 20% 20% 0 0%;
+          border-radius: 15% 15% 0 0%;
           width: 100%;
           height: 100%;
           min-height: 100vh;
@@ -137,29 +138,39 @@ body {
         width: 100%;
         text-transform: uppercase;
         color: white;
-        text-shadow: 8px 8px $red-accent;
-        font-size: 30px;
+        text-shadow: 6px 6px $red-accent;
+        font-size: 40px;
+        letter-spacing: 3px;
       }
       #user-list {
         position: relative;
         display: block;
         width: 100%;
-        padding: 0 10%;
+        padding: 5% 10% 0 10%;
         box-sizing: border-box;
         #sort-button {
           position: relative;
           display: block;
           //display: flex;
-          width: 33%;
-          height: 50px;
+          width: 25%;
+          height: 30px;
           margin: 0 auto;
+          padding: 5px;
           border-radius: 30px;
           background-color: $background-blue;
           color: white;
           text-transform: uppercase;
           @include button-font();
-          font-size: 15px;
+          font-size: 12px;
           letter-spacing: 3px;
+          &:focus,
+          &:active {
+            outline-color: $cake-pink;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
 
           &:after {
             position: absolute;
@@ -172,6 +183,39 @@ body {
             background-color: $background-blue;
             width: 10%;
             height: 50px;
+          }
+        }
+
+        .user-card {
+          position: relative;
+          display: block;
+          width: 50%;
+          margin: 50px auto;
+          height: 200px;
+          background-color: white;
+          box-shadow: 4px 4px $background-blue;
+
+          .birthday-status {
+            position: absolute;
+            display: block;
+            top: -5%;
+            left: -3%;
+            width: 50%;
+            background-color: $card-blue;
+            padding: 10px;
+            box-shadow: 4px 4px $background-blue;
+            z-index: 2;
+            .status,
+            .birthday {
+              position: relative;
+              display: block;
+              width: 100%;
+              color: white;
+              margin: 0;
+            }
+          }
+          .user-info {
+
           }
         }
       }
