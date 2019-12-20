@@ -1,6 +1,7 @@
 // Variables
 
 $background-blue: #48C1EC;
+$dark-blue: #18518F;
 $cake-pink: #FFC0BD;
 $red-accent: #D0021B;
 $card-blue: #71DAE6;
@@ -56,6 +57,10 @@ $card-blue: #71DAE6;
 
 @mixin button-font() {
   font-family: Tofino-Narrow-Medium, Arial, Helvetica, sans-serif;
+}
+
+@mixin body-font() {
+  font-family: Tofino-Regular, Arial, Helvetica, sans-serif;
 }
 
 html,
@@ -146,7 +151,7 @@ body {
         position: relative;
         display: block;
         width: 100%;
-        padding: 5% 10% 0 10%;
+        padding: 0 10% 0 10%;
         box-sizing: border-box;
         #sort-button {
           position: relative;
@@ -154,7 +159,7 @@ body {
           //display: flex;
           width: 25%;
           height: 30px;
-          margin: 0 auto;
+          margin: 0 auto 75px auto;
           padding: 5px;
           border-radius: 30px;
           background-color: $background-blue;
@@ -200,11 +205,13 @@ body {
             display: block;
             top: -5%;
             left: -3%;
-            width: 50%;
+            width: 40%;
             background-color: $card-blue;
-            padding: 10px;
+            padding: 10px 15px 15px;
             box-shadow: 4px 4px $background-blue;
             z-index: 2;
+            text-align: left;
+            box-sizing: border-box;
             .status,
             .birthday {
               position: relative;
@@ -222,19 +229,47 @@ body {
             padding: 20px;
             flex-direction: row;
             align-items: center;
-            justify-content: space-between;
-            align-content: space-between;
+            justify-content: space-around;
+            align-content: space-around;
             box-sizing: border-box;
             .name-nat {
               position: relative;
               display: block;
               width: 50%;
               flex: 0 1 auto;
-
+              margin-top: 20%;
               .name,
               .nationality {
                 position: relative;
                 display: block;
+                color: $dark-blue;
+                margin: 5px 0;
+              }
+              .name {
+                @include header-font();
+                text-transform: capitalize;
+              }
+              .nat {
+                @include body-font();
+                margin-top: 0;
+              }
+            }
+
+            .user-pic {
+              position: relative;
+              display: block;
+              width: 150px;
+              height: 150px;
+              flex: 0 1 auto;
+              border-radius: 50%;
+              background-color: $background-blue;
+              overflow: hidden;
+              .pic {
+                position: relative;
+                display: block;
+                width: 100%;
+                height: auto;
+
               }
             }
           }

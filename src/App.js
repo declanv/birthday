@@ -74,20 +74,20 @@ class BirthdayList extends React.Component {
 		return (
 			<div class='user-card' key={user.dob.date}>
 			  <div className={'birthday-status'}>
-					<p className={'status'}>{birthdayStatus}</p>
-					<p className={'birthday'}>{birthdayDay}</p>
+					<p className={'status'}>{birthdayStatus}:</p>
+					<p className={'birthday'}>{dob.toLocaleString('default', { month: 'long' })} {birthdayDay}</p>
 			  </div>
 				<div class="user-info">
 					<div class='name-nat'>
 						<p class="name">
 							{user.name.first} {user.name.last}
 						</p>
-						<p class="nationality">
+						<p class="nat">
 							{user.nat}
 						</p>
 					</div>
 					<div class="user-pic">
-						<img src={'user.picture.thumbnail'}></img>
+						<img class='pic' src={user.picture.thumbnail}></img>
 					</div>
 				</div>
 			</div>
