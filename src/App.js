@@ -51,7 +51,18 @@ class BirthdayList extends React.Component {
 	//       console.log(error);
 	//     });
 	  this.setState(
-		  { users: [{
+		  { users: [
+		  	{
+				  "id": "123456789",
+				  "gender": "female",
+				  "name": {"title": "miss","first": "Stella","last": "Bonheim"},
+				  "dob": {"date":"1987-02-02T14:48:00"},
+				  "picture": {"large": "https://randomuser.me/api/portraits/women/50.jpg",
+					  "medium": "https://randomuser.me/api/portraits/med/women/50.jpg",
+					  "thumbnail":"https://randomuser.me/api/portraits/thumb/women/50.jpg"},
+				  "nat": "CA"
+			  },
+				{
 				  "id": "123456789",
 				  "gender": "female",
 				  "name": {"title": "miss","first": "ramona","last": "carter"},
@@ -60,7 +71,18 @@ class BirthdayList extends React.Component {
 					  "medium": "https://randomuser.me/api/portraits/med/women/90.jpg",
 					  "thumbnail":"https://randomuser.me/api/portraits/thumb/women/90.jpg"},
 				  "nat": "USA"
-			  }]
+			  },
+				{
+				  "id": "123456789",
+				  "gender": "male",
+				  "name": {"title": "mr","first": "arthur","last": "fontina"},
+				  "dob": {"date":"1956-01-15T14:48:00"},
+				  "picture": {"large": "https://randomuser.me/api/portraits/men/90.jpg",
+					  "medium": "https://randomuser.me/api/portraits/med/men/90.jpg",
+					  "thumbnail":"https://randomuser.me/api/portraits/thumb/men/90.jpg"},
+				  "nat": "USA"
+			  },
+				]
 		  }
 	  );
   }
