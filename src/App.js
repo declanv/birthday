@@ -15,13 +15,10 @@ class BirthdayList extends React.Component {
   sortUsers() {
     console.log('sorting users');
   }
-  checkBirthday(userDob) {
+  checkBirthday(birthdayMonth, birthdayDay) {
     let today = new Date();
     let todayMonth = today.getMonth();
     let todayDay = today.getDate();
-    let dob = new Date(userDob);
-    let birthdayMonth = dob.getMonth();
-    let birthdayDay = dob.getDate();
 
     if (todayMonth === birthdayMonth && todayDay === birthdayDay) {
       console.log(`Birthday Today!: Today's month: ${todayMonth}, and BirthdayMonth: ${birthdayMonth}. Today's day, and birthdayDay: ${birthdayDay}`);
@@ -50,9 +47,16 @@ class BirthdayList extends React.Component {
   render() {
     let userList = this.state.users.length > 0 ? this.state.users.map((step, i) => {
         let user = this.state.users[i];
-        let birthdayStatus = this.checkBirthday(user.dob.date);
+        let dob = new Date(user.dob.date);
+        let birthdayMonth = dob.getMonth();
+        let birthdayDay = dob.getDate();
+        let birthdayStatus = this.checkBirthday(birthdayMonth, birthdayDay);
         return (
             <div key={user.dob.date}>
+              <div className={'birthday-status'}>
+                <p className={'status'}>{birthdayStatus}</p>
+                <p className={'birthday'}>{birthdayDay}</p>
+              </div>
               <p>
                 {user.name.first}
               </p>
