@@ -87,7 +87,7 @@ class BirthdayList extends React.Component {
 						</p>
 					</div>
 					<div class="user-pic">
-						<img class='pic' src={user.picture.thumbnail}></img>
+						<img class='pic' src={user.picture.large}></img>
 					</div>
 				</div>
 			</div>
