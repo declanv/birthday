@@ -11,6 +11,9 @@ class BirthdayList extends React.Component {
       users : [],
     };
   }
+  sortUsers() {
+    console.log('sorting users');
+  }
   componentDidMount() {
     axios.get(randomUserUrl)
         .then(response => {
@@ -33,9 +36,15 @@ class BirthdayList extends React.Component {
         )
       }) : null;
     return (
-        <div id='appContainer'>
-          <h1>Birthday Tracker</h1>
-          <div>
+        <div id='cake'>
+          <div id='titleContainer'>
+            <h1>Birthday Tracker</h1>
+          </div>
+          <div id='userList'>
+            <button id='sortButton'
+              onClick={()=>this.sortUsers()}
+            >
+            </button>
             {userList}
           </div>
         </div>
