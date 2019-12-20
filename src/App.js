@@ -113,7 +113,7 @@ class BirthdayList extends React.Component {
 								{user.gender}
 							</p>
 							<p class="nat">
-								{user.nat === 'CA' ? 'Canada': 'USA'}
+								from {user.nat === 'CA' ? 'Canada': 'USA'}
 							</p>
 							<p class="dob">
 								Born: {dob.toLocaleString('default', { month: 'long' })} {birthdayDay}, {birthdayYear}
