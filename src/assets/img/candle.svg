@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="57px" height="108px" viewBox="0 0 57 108" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>candle</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="16" y="62" width="25" height="46"></rect>
+        <filter x="-12.0%" y="-6.5%" width="148.0%" height="113.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="6" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 0.816203773   0 0 0 0 0.00751322834   0 0 0 0 0.106696017  0 0 0 1 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Birthday-Tracker" transform="translate(-261.000000, -64.000000)">
+            <g id="Group-2" transform="translate(261.000000, 64.000000)">
+                <g id="candle">
+                    <g id="Group-2">
+                        <g id="Rectangle-Copy">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        </g>
+                        <path d="M28.5,76.2387957 C44.2401154,76.2387957 57,63.4789111 57,47.7387957 C57,31.9986804 32,7.10542736e-15 28.5,7.10542736e-15 C25,7.10542736e-15 0,31.9986804 0,47.7387957 C0,63.4789111 12.7598846,76.2387957 28.5,76.2387957 Z" id="Oval" fill="#F8E71C"></path>
+                        <path d="M29,69 C41.7025492,69 52,58.7905921 52,46.1966492 C52,33.6027064 31.8245614,8 29,8 C26.1754386,8 6,33.6027064 6,46.1966492 C6,58.7905921 16.2974508,69 29,69 Z" id="Oval-Copy" fill="#F5A623"></path>
+                        <path d="M28.5,69 C34.8512746,69 40,63.8116124 40,57.4114119 C40,51.0112114 29.9122807,38 28.5,38 C27.0877193,38 17,51.0112114 17,57.4114119 C17,63.8116124 22.1487254,69 28.5,69 Z" id="Oval-Copy-2" fill="#D0021B"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

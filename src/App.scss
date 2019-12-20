@@ -1,0 +1,181 @@
+// Variables
+
+$background-blue: #48C1EC;
+$cake-pink: #FFC0BD;
+$red-accent: #D0021B;
+
+// Mixins
+
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+
+  $extmods: (
+          eot: "?",
+          svg: "#" + str-replace($name, " ", "_")
+  );
+
+  $formats: (
+          otf: "opentype",
+          ttf: "truetype"
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+@include font-face("Tofino-Regular", "assets/fonts/TofinoProPersonal-Regular", 400, normal, otf);
+@include font-face("Tofino-Wide-Regular", "assets/fonts/TofinoProPersonalWide-Regular", 800, normal, otf);
+@include font-face("Tofino-Wide-Thin", "assets/fonts/TofinoProPersonalWide-Thin", 400, normal, otf);
+@include font-face("Tofino-Semibold", "assets/fonts/TofinoProPersonalCond-Semibold", 800, bold, otf);
+@include font-face("Tofino-Light", "assets/fonts/TofinoProPersonalCond-Light", 100, bold, otf);
+@include font-face("Tofino-Medium", "assets/fonts/TofinoProPersonalCond-Medium", 300, bold, otf);
+@include font-face("Tofino-Narrow-Medium", "assets/fonts/TofinoProPersonalNarrow-Book", 300, bold, otf);
+
+@mixin header-font() {
+  font-family: Tofino-Wide-Regular, Arial, Helvetica, sans-serif;
+}
+
+@mixin button-font() {
+  font-family: Tofino-Narrow-Medium, Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: $background-blue;
+  @include header-font();
+
+  #cake-box {
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+
+    #candles-container {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      align-content: space-between;
+      width: 50%;
+      height: 10%;
+      margin: 30px auto 0 auto;
+      .candle {
+        position: relative;
+        display: block;
+        flex: 0 1 auto;
+        height: 75px;
+        width: auto;
+      }
+    }
+
+    #cake {
+      position: relative;
+      display: block;
+      width: 90%;
+      height: 100%;
+      min-height: 100vh;
+      margin: 0 auto;
+      background-color: $cake-pink;
+      padding-top: 2%;
+      box-sizing: border-box;
+      border-radius: 20% 20% 0 0%;
+
+      #frosting-container {
+        position: absolute;
+        display: block;
+        top: 0;
+        content: '';
+        //border-radius: 20% 20% 0 0%;
+        width: 100%;
+        height: 75px;
+        overflow: hidden;
+        //background-color: white;
+        #frosting {
+          position: relative;
+          display: block;
+          content: '';
+          border-radius: 20% 20% 0 0%;
+          width: 100%;
+          height: 100%;
+          min-height: 100vh;
+          background-color: white;
+        }
+      }
+
+      .candle {
+
+      }
+
+      #title-container {
+        position: relative;
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+        text-transform: uppercase;
+        color: white;
+        text-shadow: 8px 8px $red-accent;
+        font-size: 30px;
+      }
+      #user-list {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 0 10%;
+        box-sizing: border-box;
+        #sort-button {
+          position: relative;
+          display: block;
+          //display: flex;
+          width: 33%;
+          height: 50px;
+          margin: 0 auto;
+          border-radius: 30px;
+          background-color: $background-blue;
+          color: white;
+          text-transform: uppercase;
+          @include button-font();
+          font-size: 15px;
+          letter-spacing: 3px;
+
+          &:after {
+            position: absolute;
+            display: block;
+            //flex: 0 1 auto;
+            top: 100%;
+            left: 45%;
+            content: '';
+            clip-path: polygon(50% 25%, 0 0, 100% 0);
+            background-color: $background-blue;
+            width: 10%;
+            height: 50px;
+          }
+        }
+      }
+    }
+  }
+
+}
