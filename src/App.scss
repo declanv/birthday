@@ -165,7 +165,7 @@ body {
           margin: 0 auto 75px auto;
           padding: 5px;
           border-radius: 30px;
-          background-color: $background-blue;
+          background-color: $dark-blue;
           color: white;
           text-transform: uppercase;
           @include button-font();
@@ -188,7 +188,7 @@ body {
             left: 45%;
             content: '';
             clip-path: polygon(50% 25%, 0 0, 100% 0);
-            background-color: $background-blue;
+            background-color: $dark-blue;
             width: 10%;
             height: 50px;
           }
@@ -208,11 +208,11 @@ body {
             display: block;
             top: -5%;
             left: -3%;
-            width: 40%;
+            width: 33%;
             background-color: $card-blue;
-            padding: 10px 15px 15px;
+            padding: 8px 15px 10px;
             box-shadow: 4px 4px $background-blue;
-            z-index: 2;
+            z-index: 5;
             text-align: left;
             box-sizing: border-box;
             .status,
@@ -236,21 +236,33 @@ body {
             align-content: space-between;
             box-sizing: border-box;
             z-index: 2;
+
             .name-nat {
               position: relative;
-              display: block;
+              display: flex;
               width: 50%;
+              height: 100%;
               flex: 0 1 auto;
-              margin-top: 20%;
+              flex-direction: column;
+              align-items: flex-start;
+              justify-content: space-around;
+              align-content: space-around;
+              margin-top: 0;
+              margin-left: 15%;
+
               .name,
               .nationality {
                 position: relative;
                 display: block;
+                flex: 0 1 auto;
                 color: $dark-blue;
                 margin: 5px 0;
               }
               .name {
                 @include header-font();
+                font-size: 30px;
+                line-height: 36px;
+                height: 60%;
                 text-transform: capitalize;
               }
               .bio-info {
@@ -259,8 +271,9 @@ body {
                 .dob {
                   position: relative;
                   display: inline-block;
-                  margin-right: 5px;
+                  margin: 0 5px 0 0;
                   @include body-font();
+                  //@include button-font();
                   margin-top: 0;
                   text-transform: capitalize;
                   font-size: 14px;
@@ -280,13 +293,14 @@ body {
             .user-pic {
               position: relative;
               display: block;
-              width: 150px;
-              height: 150px;
+              width: 125px;
+              height: 125px;
               flex: 0 1 auto;
               border-radius: 50%;
               background-color: $background-blue;
               overflow: hidden;
-              margin-right: 5%;
+              margin-left: 6.5%;
+              margin-top: 4%;
               .pic {
                 position: relative;
                 display: block;
@@ -309,14 +323,14 @@ body {
           &:before {
             width: 100%;
             height: 5px;
-            top: 50%;
+            top: 58%;
             left: 0;
           }
           &:after {
             height: 100%;
             width: 5px;
             top: 0;
-            left: 53%;
+            left: 40%;
           }
         }
       }

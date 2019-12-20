@@ -101,6 +101,9 @@ class BirthdayList extends React.Component {
 					<p className={'birthday'}>{dob.toLocaleString('default', { month: 'long' })} {birthdayDay}</p>
 			  </div>
 				<div class="user-info">
+					<div className="user-pic">
+						<img className='pic' src={user.picture.large}></img>
+					</div>
 					<div class='name-nat'>
 						<p class="name">
 							{user.name.first} {user.name.last}
@@ -116,9 +119,6 @@ class BirthdayList extends React.Component {
 								Born: {dob.toLocaleString('default', { month: 'long' })} {birthdayDay}, {birthdayYear}
 							</p>
 						</span>
-					</div>
-					<div class="user-pic">
-						<img class='pic' src={user.picture.large}></img>
 					</div>
 				</div>
 			</div>
@@ -145,7 +145,7 @@ class BirthdayList extends React.Component {
 					<button id='sort-button'
 						onClick={()=>this.sortUsers()}
 					>
-						Sort by upcoming birthdays
+						Sort by birthday month
 					</button>
 					{userList}
 				</div>
