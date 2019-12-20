@@ -92,6 +92,7 @@ class BirthdayList extends React.Component {
 		let dob = new Date(user.dob.date);
 		let birthdayMonth = dob.getMonth();
 		let birthdayDay = dob.getDate();
+		let birthdayYear = dob.getUTCFullYear();
 		let birthdayStatus = this.checkBirthday(birthdayMonth, birthdayDay);
 		return (
 			<div class='user-card' key={user.dob.date}>
@@ -104,9 +105,17 @@ class BirthdayList extends React.Component {
 						<p class="name">
 							{user.name.first} {user.name.last}
 						</p>
-						<p class="nat">
-							{user.nat}
-						</p>
+						<span class="bio-info">
+							<p class="gender">
+								{user.gender}
+							</p>
+							<p class="nat">
+								{user.nat === 'CA' ? 'Canada': 'USA'}
+							</p>
+							<p class="dob">
+								Born: {dob.toLocaleString('default', { month: 'long' })} {birthdayDay}, {birthdayYear}
+							</p>
+						</span>
 					</div>
 					<div class="user-pic">
 						<img class='pic' src={user.picture.large}></img>

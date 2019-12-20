@@ -74,9 +74,10 @@ body {
 
   #cake-box {
     position: relative;
-    display: block;
+    display: flex;
     height: 100%;
     width: 100%;
+    flex-direction: column;
 
     #candles-container {
       position: relative;
@@ -196,7 +197,7 @@ body {
         .user-card {
           position: relative;
           display: block;
-          width: 50%;
+          width: 60%;
           margin: 50px auto;
           height: 200px;
           background-color: white;
@@ -231,9 +232,10 @@ body {
             padding: 20px;
             flex-direction: row;
             align-items: center;
-            justify-content: space-around;
-            align-content: space-around;
+            justify-content: space-between;
+            align-content: space-between;
             box-sizing: border-box;
+            z-index: 2;
             .name-nat {
               position: relative;
               display: block;
@@ -251,10 +253,28 @@ body {
                 @include header-font();
                 text-transform: capitalize;
               }
-              .nat {
-                @include body-font();
-                margin-top: 0;
+              .bio-info {
+                .nat,
+                .gender,
+                .dob {
+                  position: relative;
+                  display: inline-block;
+                  margin-right: 5px;
+                  @include body-font();
+                  margin-top: 0;
+                  text-transform: capitalize;
+                  font-size: 14px;
+                  &:after {
+                    content: ', '
+                  }
+                  &:last-of-type {
+                    &:after {
+                      content: '';
+                    }
+                  }
+                }
               }
+
             }
 
             .user-pic {
@@ -266,6 +286,7 @@ body {
               border-radius: 50%;
               background-color: $background-blue;
               overflow: hidden;
+              margin-right: 5%;
               .pic {
                 position: relative;
                 display: block;
@@ -295,7 +316,7 @@ body {
             height: 100%;
             width: 5px;
             top: 0;
-            left: 50%;
+            left: 53%;
           }
         }
       }
