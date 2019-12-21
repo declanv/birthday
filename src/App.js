@@ -51,7 +51,6 @@ class BirthdayList extends React.Component {
 	let todayDay = today.getDate();
 
 	if (todayMonth === birthdayMonth && todayDay === birthdayDay) {
-	  console.log(`Birthday Today!: Today's month: ${todayMonth}, and BirthdayMonth: ${birthdayMonth}. Today's day, and birthdayDay: ${birthdayDay}`);
 	  return {
 	  	msg: "Birthday Today!",
 			class: 'today'
@@ -64,16 +63,13 @@ class BirthdayList extends React.Component {
 				msg: "Birthday Upcoming",
 				class: 'upcoming'
 			};
-			console.log(`Birthday Upcoming: Today's month: ${todayMonth}, and BirthdayMonth: ${birthdayMonth}. Today's day: ${todayDay}, and birthdayDay: ${birthdayDay}`)
 		} else {
 			return {
 				msg: "Birthday Passed",
 				class: 'passed'
 			};
-			console.log(`Birthday Passed: Today's month: ${todayMonth}, and BirthdayMonth: ${birthdayMonth}. Today's day: ${todayDay}, and birthdayDay: ${birthdayDay}`)
 		}
 	} else {
-	  console.log(`Birthday Passed: Today's month: ${todayMonth}, and BirthdayMonth: ${birthdayMonth}. Today's day: ${todayDay}, and birthdayDay: ${birthdayDay}`)
 	  return {
 	  	msg: "Birthday Passed",
 			class: 'passed'
@@ -84,13 +80,12 @@ class BirthdayList extends React.Component {
   componentDidMount() {
 		axios.get(randomUserUrl)
 				.then(response => {
-
 					this.setState({users: response.data.results});
-					console.log(response.data.results);
 				})
 				.catch(error => {
 					console.log(error);
 				});
+		// Seed data for testing (randomuser.me was down for a day)
 	  // this.setState(
 		//   { users: [
 		//   	{
