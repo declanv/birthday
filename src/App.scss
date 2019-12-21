@@ -187,7 +187,7 @@ body {
             position: absolute;
             display: block;
             //flex: 0 1 auto;
-            top: 100%;
+            top: 98%;
             left: 45%;
             content: '';
             clip-path: polygon(50% 25%, 0 0, 100% 0);
@@ -323,7 +323,7 @@ body {
                 overflow: hidden;
                 max-width: 150px;
                 margin: 0 auto;
-                box-shadow: 3px 3px $background-blue;
+                //border: 3px solid $background-blue;
 
                 .pic {
                   position: relative;

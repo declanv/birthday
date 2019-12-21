@@ -8,14 +8,42 @@ const randomUserUrl = 'https://randomuser.me/api/?results=20&nat=us,ca&inc=id,na
 
 class BirthdayList extends React.Component {
   constructor(props) {
-	super(props);
-	this.state = {
-	  users : [],
-	};
+		super(props);
+		this.state = {
+			users : [],
+		};
   }
   sortUsers() {
-	console.log('sorting users');
-  }
+		const sortByBirthday = () =>
+			(a, b) => {
+				let aDob = new Date(a['dob']['date']);
+				let aBirthdayMonth = aDob.getMonth();
+				let aBirthdayDay = aDob.getDate();
+				let bDob = new Date(b['dob']['date']);
+				let bBirthdayMonth = bDob.getMonth();
+				let bBirthdayDay = bDob.getDate();
+				if (aBirthdayMonth === bBirthdayMonth && aBirthdayDay === bBirthdayDay) {
+					return 0;
+				} else if (aBirthdayMonth < bBirthdayMonth) {
+					return -1;
+					// if (aBirthdayDay < bBirthdayDay) {
+					// 	return -1;
+					// } else {
+					// 	return 1;
+					// }
+				} else {
+					return 1;
+				}
+			}
+
+		const sortedUsers = this.state.users.slice();
+		sortedUsers.sort(sortByBirthday());
+		this.setState(
+			{
+			users: sortedUsers
+		});
+
+	}
   checkBirthday(birthdayMonth, birthdayDay) {
 	let today = new Date();
 	let todayMonth = today.getMonth();
@@ -107,29 +135,29 @@ class BirthdayList extends React.Component {
 		let birthdayYear = dob.getUTCFullYear();
 		let birthdayStatus = this.checkBirthday(birthdayMonth, birthdayDay);
 		return (
-			<div class='user-card' key={user.dob.date}>
-			  <div class={`birthday-status ${birthdayStatus.class}`}>
+			<div className='user-card' key={user.dob.date}>
+			  <div className={`birthday-status ${birthdayStatus.class}`}>
 					<p className={'status'}>{birthdayStatus.msg}:</p>
 					<p className={'birthday'}>{dob.toLocaleString('default', { month: 'long' })} {birthdayDay}</p>
 			  </div>
-				<div class="user-info">
+				<div className="user-info">
 					<div className="user-pic">
 						<div className='pic-wrapper'>
-							<img className='pic' src={user.picture.large}></img>
+							<img className='pic' src={user.picture.large} alt={`A portrait of: ${user.name.first} ${user.name.last}`}></img>
 						</div>
 					</div>
-					<div class='name-nat'>
-						<p class="name">
+					<div className='name-nat'>
+						<p className="name">
 							{user.name.first} {user.name.last}
 						</p>
-						<span class="bio-info">
-							<p class="gender">
+						<span className="bio-info">
+							<p className="gender">
 								{user.gender}
 							</p>
-							<p class="nat">
+							<p className="nat">
 								from {user.nat === 'CA' ? 'Canada': 'USA'}
 							</p>
-							<p class="dob">
+							<p className="dob">
 								Born: {dob.toLocaleString('default', { month: 'long' })} {birthdayDay}, {birthdayYear}
 							</p>
 						</span>
@@ -142,11 +170,11 @@ class BirthdayList extends React.Component {
 
 		<div id='cake-box'>
 			<div id='candles-container'>
-				<img class='candle' src={candle}></img>
-				<img class='candle' src={candle}></img>
-				<img class='candle' src={candle}></img>
-				<img class='candle' src={candle}></img>
-				<img class='candle' src={candle}></img>
+				<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
+				<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
+				<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
+				<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
+				<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
 			</div>
 			<div id='cake'>
 				<div id='frosting-container'>
