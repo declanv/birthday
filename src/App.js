@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import './App.scss';
 import candle from "./assets/img/candle.png";
+import Confetti from 'react-confetti';
 const randomUserUrl = 'https://randomuser.me/api/?results=20&nat=us,ca&inc=id,name,gender,nat,dob,picture&noinfo';
 
 
@@ -123,69 +124,77 @@ class BirthdayList extends React.Component {
 	  // );
   }
   render() {
-	let userList = this.state.users.length > 0 ? this.state.users.map((step, i) => {
-		let user = this.state.users[i];
-		let dob = new Date(user.dob.date);
-		let birthdayMonth = dob.getMonth();
-		let birthdayDay = dob.getDate();
-		let birthdayYear = dob.getUTCFullYear();
-		let birthdayStatus = this.checkBirthday(birthdayMonth, birthdayDay);
-		return (
-			<div className='user-card' key={user.dob.date}>
-			  <div className={`birthday-status ${birthdayStatus.class}`}>
-					<p className={'status'}>{birthdayStatus.msg}:</p>
-					<p className={'birthday'}>{dob.toLocaleString('default', { month: 'long' })} {birthdayDay}</p>
-			  </div>
-				<div className="user-info">
-					<div className="user-pic">
-						<div className='pic-wrapper'>
-							<img className='pic' src={user.picture.large} alt={`A portrait of: ${user.name.first} ${user.name.last}`}></img>
+  	const windowWidth = window.innerWidth;
+  	const windowHeight = window.innerHeight;
+		let userList = this.state.users.length > 0 ? this.state.users.map((step, i) => {
+			let user = this.state.users[i];
+			let dob = new Date(user.dob.date);
+			let birthdayMonth = dob.getMonth();
+			let birthdayDay = dob.getDate();
+			let birthdayYear = dob.getUTCFullYear();
+			let birthdayStatus = this.checkBirthday(birthdayMonth, birthdayDay);
+			return (
+				<div className='user-card' key={user.dob.date}>
+					<div className={`birthday-status ${birthdayStatus.class}`}>
+						<p className={'status'}>{birthdayStatus.msg}:</p>
+						<p className={'birthday'}>{dob.toLocaleString('default', { month: 'long' })} {birthdayDay}</p>
+					</div>
+					<div className="user-info">
+						<div className="user-pic">
+							<div className='pic-wrapper'>
+								<img className='pic' src={user.picture.large} alt={`A portrait of: ${user.name.first} ${user.name.last}`}></img>
+							</div>
+						</div>
+						<div className='name-nat'>
+							<p className="name">
+								{user.name.first} {user.name.last}
+							</p>
+							<span className="bio-info">
+								<p className="gender">
+									{user.gender}
+								</p>
+								<p className="nat">
+									from {user.nat === 'CA' ? 'Canada': 'USA'}
+								</p>
+								<p className="dob">
+									Born: {dob.toLocaleString('default', { month: 'long' })} {birthdayDay}, {birthdayYear}
+								</p>
+							</span>
 						</div>
 					</div>
-					<div className='name-nat'>
-						<p className="name">
-							{user.name.first} {user.name.last}
-						</p>
-						<span className="bio-info">
-							<p className="gender">
-								{user.gender}
-							</p>
-							<p className="nat">
-								from {user.nat === 'CA' ? 'Canada': 'USA'}
-							</p>
-							<p className="dob">
-								Born: {dob.toLocaleString('default', { month: 'long' })} {birthdayDay}, {birthdayYear}
-							</p>
-						</span>
-					</div>
 				</div>
-			</div>
-		)
-	  }) : null;
+			)
+			}) : null;
 	return (
+		<div id='confetti-container'>
+			<Confetti
+				width={windowWidth}
+				height={windowHeight}
+			/>
+			<div id='cake-box'>
 
-		<div id='cake-box'>
-			<div id='candles-container'>
-				<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
-				<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
-				<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
-				<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
-				<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
-			</div>
-			<div id='cake'>
-				<div id='frosting-container'>
-					<div id='frosting'></div>
+				<div id='candles-container'>
+					<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
+					<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
+					<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
+					<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
+					<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
 				</div>
-				<div id='title-container'>
-					<h1>Birthday Tracker</h1>
-				</div>
-				<div id='user-list'>
-					<button id='sort-button'
-						onClick={()=>this.sortUsers()}
-					>
-						Sort by birthday month
-					</button>
-					{userList}
+				<div id='cake'>
+					<div id='frosting-container'>
+						<div id='frosting'></div>
+					</div>
+					<div id='title-container'>
+						<h1>Birthday Tracker</h1>
+					</div>
+					<div id='user-list'>
+						<button id='sort-button'
+							onClick={()=>this.sortUsers()}
+						>
+							Sort by birthday month
+						</button>
+						{userList}
+					</div>
 				</div>
 			</div>
 		</div>
