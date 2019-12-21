@@ -489,6 +489,25 @@ body {
           #sort-button {
             width: 100%;
           }
+
+          .user-card {
+            .birthday-status {
+              font-size: 11px;
+            }
+            .user-info {
+              .user-pic {
+                width: 45%;
+              }
+              .name-nat {
+                width: 55%;
+                .name {
+                  margin-top: 15%;
+                  font-size: 18px;
+                  line-height: 20px;
+                }
+              }
+            }
+          }
         }
       }
     }
