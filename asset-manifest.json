@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/birthday/static/css/main.37d89957.chunk.css",
+    "main.css": "/birthday/static/css/main.f8fc84e7.chunk.css",
     "main.js": "/birthday/static/js/main.2f261abe.chunk.js",
     "main.js.map": "/birthday/static/js/main.2f261abe.chunk.js.map",
     "runtime-main.js": "/birthday/static/js/runtime-main.6f23c34f.js",
@@ -8,16 +8,16 @@
     "static/js/2.8044e911.chunk.js": "/birthday/static/js/2.8044e911.chunk.js",
     "static/js/2.8044e911.chunk.js.map": "/birthday/static/js/2.8044e911.chunk.js.map",
     "index.html": "/birthday/index.html",
-    "precache-manifest.f928c78cb404196f0a75294c23e2444d.js": "/birthday/precache-manifest.f928c78cb404196f0a75294c23e2444d.js",
+    "precache-manifest.7bd3b3a63c7be00adfd7c4c2e5333e32.js": "/birthday/precache-manifest.7bd3b3a63c7be00adfd7c4c2e5333e32.js",
     "service-worker.js": "/birthday/service-worker.js",
-    "static/css/main.37d89957.chunk.css.map": "/birthday/static/css/main.37d89957.chunk.css.map",
+    "static/css/main.f8fc84e7.chunk.css.map": "/birthday/static/css/main.f8fc84e7.chunk.css.map",
     "static/js/2.8044e911.chunk.js.LICENSE": "/birthday/static/js/2.8044e911.chunk.js.LICENSE",
     "static/media/App.scss": "/birthday/static/media/TofinoProPersonalWide-Ultra.59d438e6.otf"
   },
   "entrypoints": [
     "static/js/runtime-main.6f23c34f.js",
     "static/js/2.8044e911.chunk.js",
-    "static/css/main.37d89957.chunk.css",
+    "static/css/main.f8fc84e7.chunk.css",
     "static/js/main.2f261abe.chunk.js"
   ]
 }
