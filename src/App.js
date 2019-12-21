@@ -23,68 +23,80 @@ class BirthdayList extends React.Component {
 
 	if (todayMonth === birthdayMonth && todayDay === birthdayDay) {
 	  console.log(`Birthday Today!: Today's month: ${todayMonth}, and BirthdayMonth: ${birthdayMonth}. Today's day, and birthdayDay: ${birthdayDay}`);
-	  return "Birthday Today!";
+	  return {
+	  	msg: "Birthday Today!",
+			class: 'today'
+		};
 	//  Re-read the instructions: this is much simpler than I thought: we're only checking for the current year, not future years also
 	} else if (todayMonth <= birthdayMonth) {
 
 		if (todayDay < birthdayDay) {
-			return "Birthday Upcoming";
+			return {
+				msg: "Birthday Upcoming",
+				class: 'upcoming'
+			};
 			console.log(`Birthday Upcoming: Today's month: ${todayMonth}, and BirthdayMonth: ${birthdayMonth}. Today's day: ${todayDay}, and birthdayDay: ${birthdayDay}`)
 		} else {
-			return "Birthday Passed";
+			return {
+				msg: "Birthday Passed",
+				class: 'passed'
+			};
 			console.log(`Birthday Passed: Today's month: ${todayMonth}, and BirthdayMonth: ${birthdayMonth}. Today's day: ${todayDay}, and birthdayDay: ${birthdayDay}`)
 		}
 	} else {
 	  console.log(`Birthday Passed: Today's month: ${todayMonth}, and BirthdayMonth: ${birthdayMonth}. Today's day: ${todayDay}, and birthdayDay: ${birthdayDay}`)
-	  return "Birthday Passed";
+	  return {
+	  	msg: "Birthday Passed",
+			class: 'passed'
+		};
 	}
 
   }
   componentDidMount() {
-	// axios.get(randomUserUrl)
-	//     .then(response => {
-	//
-	//       this.setState({users: response.data.results});
-	//       console.log(response.data.results);
-	//     })
-	//     .catch(error => {
-	//       console.log(error);
-	//     });
-	  this.setState(
-		  { users: [
-		  	{
-				  "id": "123456789",
-				  "gender": "female",
-				  "name": {"title": "miss","first": "Stella","last": "Bonheim"},
-				  "dob": {"date":"1987-02-02T14:48:00"},
-				  "picture": {"large": "https://randomuser.me/api/portraits/women/50.jpg",
-					  "medium": "https://randomuser.me/api/portraits/med/women/50.jpg",
-					  "thumbnail":"https://randomuser.me/api/portraits/thumb/women/50.jpg"},
-				  "nat": "CA"
-			  },
-				{
-				  "id": "123456789",
-				  "gender": "female",
-				  "name": {"title": "miss","first": "ramona","last": "carter"},
-				  "dob": {"date":"2011-10-10T14:48:00"},
-				  "picture": {"large": "https://randomuser.me/api/portraits/women/90.jpg",
-					  "medium": "https://randomuser.me/api/portraits/med/women/90.jpg",
-					  "thumbnail":"https://randomuser.me/api/portraits/thumb/women/90.jpg"},
-				  "nat": "USA"
-			  },
-				{
-				  "id": "123456789",
-				  "gender": "male",
-				  "name": {"title": "mr","first": "arthur","last": "fontina"},
-				  "dob": {"date":"1956-01-15T14:48:00"},
-				  "picture": {"large": "https://randomuser.me/api/portraits/men/90.jpg",
-					  "medium": "https://randomuser.me/api/portraits/med/men/90.jpg",
-					  "thumbnail":"https://randomuser.me/api/portraits/thumb/men/90.jpg"},
-				  "nat": "USA"
-			  },
-				]
-		  }
-	  );
+		axios.get(randomUserUrl)
+				.then(response => {
+
+					this.setState({users: response.data.results});
+					console.log(response.data.results);
+				})
+				.catch(error => {
+					console.log(error);
+				});
+	  // this.setState(
+		//   { users: [
+		//   	{
+		// 		  "id": "123456789",
+		// 		  "gender": "female",
+		// 		  "name": {"title": "miss","first": "Stella","last": "Bonheim"},
+		// 		  "dob": {"date":"1987-12-21T14:48:00"},
+		// 		  "picture": {"large": "https://randomuser.me/api/portraits/women/50.jpg",
+		// 			  "medium": "https://randomuser.me/api/portraits/med/women/50.jpg",
+		// 			  "thumbnail":"https://randomuser.me/api/portraits/thumb/women/50.jpg"},
+		// 		  "nat": "CA"
+		// 	  },
+		// 		{
+		// 		  "id": "123456789",
+		// 		  "gender": "female",
+		// 		  "name": {"title": "miss","first": "ramona","last": "carter"},
+		// 		  "dob": {"date":"2011-12-25T14:48:00"},
+		// 		  "picture": {"large": "https://randomuser.me/api/portraits/women/90.jpg",
+		// 			  "medium": "https://randomuser.me/api/portraits/med/women/90.jpg",
+		// 			  "thumbnail":"https://randomuser.me/api/portraits/thumb/women/90.jpg"},
+		// 		  "nat": "USA"
+		// 	  },
+		// 		{
+		// 		  "id": "123456789",
+		// 		  "gender": "male",
+		// 		  "name": {"title": "mr","first": "arthur","last": "fontina"},
+		// 		  "dob": {"date":"1956-01-15T14:48:00"},
+		// 		  "picture": {"large": "https://randomuser.me/api/portraits/men/90.jpg",
+		// 			  "medium": "https://randomuser.me/api/portraits/med/men/90.jpg",
+		// 			  "thumbnail":"https://randomuser.me/api/portraits/thumb/men/90.jpg"},
+		// 		  "nat": "USA"
+		// 	  },
+		// 		]
+		//   }
+	  // );
   }
   render() {
 	let userList = this.state.users.length > 0 ? this.state.users.map((step, i) => {
@@ -96,8 +108,8 @@ class BirthdayList extends React.Component {
 		let birthdayStatus = this.checkBirthday(birthdayMonth, birthdayDay);
 		return (
 			<div class='user-card' key={user.dob.date}>
-			  <div className={'birthday-status'}>
-					<p className={'status'}>{birthdayStatus}:</p>
+			  <div class={`birthday-status ${birthdayStatus.class}`}>
+					<p className={'status'}>{birthdayStatus.msg}:</p>
 					<p className={'birthday'}>{dob.toLocaleString('default', { month: 'long' })} {birthdayDay}</p>
 			  </div>
 				<div class="user-info">
