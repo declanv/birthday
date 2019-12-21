@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/birthday/static/css/main.4b1a0ec2.chunk.css",
+    "main.js": "/birthday/static/js/main.2f261abe.chunk.js",
+    "main.js.map": "/birthday/static/js/main.2f261abe.chunk.js.map",
+    "runtime-main.js": "/birthday/static/js/runtime-main.6f23c34f.js",
+    "runtime-main.js.map": "/birthday/static/js/runtime-main.6f23c34f.js.map",
+    "static/js/2.8044e911.chunk.js": "/birthday/static/js/2.8044e911.chunk.js",
+    "static/js/2.8044e911.chunk.js.map": "/birthday/static/js/2.8044e911.chunk.js.map",
+    "index.html": "/birthday/index.html",
+    "precache-manifest.84d7242b51235778b0513cb48065ade5.js": "/birthday/precache-manifest.84d7242b51235778b0513cb48065ade5.js",
+    "service-worker.js": "/birthday/service-worker.js",
+    "static/css/main.4b1a0ec2.chunk.css.map": "/birthday/static/css/main.4b1a0ec2.chunk.css.map",
+    "static/js/2.8044e911.chunk.js.LICENSE": "/birthday/static/js/2.8044e911.chunk.js.LICENSE",
+    "static/media/App.scss": "/birthday/static/media/TofinoProPersonalWide-Ultra.59d438e6.otf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6f23c34f.js",
+    "static/js/2.8044e911.chunk.js",
+    "static/css/main.4b1a0ec2.chunk.css",
+    "static/js/main.2f261abe.chunk.js"
+  ]
+}
