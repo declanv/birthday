@@ -22,15 +22,16 @@ class BirthdayList extends React.Component {
 				let bDob = new Date(b['dob']['date']);
 				let bBirthdayMonth = bDob.getMonth();
 				let bBirthdayDay = bDob.getDate();
-				if (aBirthdayMonth === bBirthdayMonth && aBirthdayDay === bBirthdayDay) {
-					return 0;
+				if (aBirthdayMonth === bBirthdayMonth) {
+					if (aBirthdayDay === bBirthdayDay) {
+						return 0;
+					} else if (aBirthdayDay < bBirthdayDay) {
+						return -1;
+					} else {
+						return 1;
+					}
 				} else if (aBirthdayMonth < bBirthdayMonth) {
 					return -1;
-					// if (aBirthdayDay < bBirthdayDay) {
-					// 	return -1;
-					// } else {
-					// 	return 1;
-					// }
 				} else {
 					return 1;
 				}
