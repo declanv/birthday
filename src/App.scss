@@ -208,7 +208,7 @@ body {
             display: block;
             top: -5%;
             left: -3%;
-            width: 33%;
+            width: 40%;
             background-color: $card-blue;
             padding: 8px 15px 10px;
             box-shadow: 4px 4px $background-blue;
@@ -218,10 +218,13 @@ body {
             .status,
             .birthday {
               position: relative;
-              display: block;
+              display: inline;
               width: 100%;
               color: white;
               margin: 0;
+            }
+            .birthday {
+              margin-left: 5px;
             }
           }
           .user-info {
@@ -361,8 +364,49 @@ body {
             width: 100%;
             .birthday-status {
               width: 40%;
+              font-size: 14px;
             }
             .user-info {
+              .name-nat {
+
+                .bio-info {
+                  .gender,
+                  .nat,
+                  .dob {
+                    display: inline;
+                    width: auto;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @media (max-width: 700px) {
+        #title-container {
+          font-size: 30px;
+        }
+        #user-list {
+          #sort-button {
+            width: 50%;
+          }
+          .user-card {
+            width: 100%;
+            margin: 100px 0;
+            .birthday-status {
+              width: 101%;
+              top: -16%;
+              left: -1%;
+              font-size: 12px;
+            }
+
+            .user-info {
+              .user-pic {
+                .pic-wrapper {
+                  max-width: 80%;
+                }
+              }
               .name-nat {
 
                 .bio-info {
