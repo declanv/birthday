@@ -331,7 +331,7 @@ body {
                   width: 100%;
                   height: auto;
                   filter: grayscale(80%) contrast(200%);
-                  opacity: 60%;
+                  opacity: 0.6;
                 }
               }
 
@@ -488,6 +488,25 @@ body {
         #user-list {
           #sort-button {
             width: 100%;
+          }
+
+          .user-card {
+            .birthday-status {
+              font-size: 11px;
+            }
+            .user-info {
+              .user-pic {
+                width: 45%;
+              }
+              .name-nat {
+                width: 55%;
+                .name {
+                  margin-top: 15%;
+                  font-size: 18px;
+                  line-height: 20px;
+                }
+              }
+            }
           }
         }
       }
