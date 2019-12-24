@@ -1,13 +1,10 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import axios from 'axios';
 import './App.scss';
 import candle from "./assets/img/candle.png";
 import Confetti from 'react-confetti';
 import _debounce from 'lodash.debounce'
 const randomUserUrl = 'https://randomuser.me/api/?results=20&nat=us,ca&inc=id,name,gender,nat,dob,picture&noinfo';
-
-
 
 class BirthdayList extends React.Component {
 	constructor(props) {
@@ -71,9 +68,7 @@ class BirthdayList extends React.Component {
 				msg: "Birthday Today!",
 				class: 'today'
 			};
-			//  Re-read the instructions: this is much simpler than I thought: we're only checking for the current year, not future years also
 		} else if (todayMonth <= birthdayMonth) {
-
 			if (todayDay < birthdayDay) {
 				return {
 					msg: "Birthday Upcoming",
@@ -109,49 +104,50 @@ class BirthdayList extends React.Component {
 				})
 				.catch(error => {
 					console.log(error);
+					// Seed data for testing (randomuser.me was down for a day)
+					//=========================================================
+					this.setState(
+					  { users: [
+					  	{
+							  "id": "123456789",
+							  "gender": "female",
+							  "name": {"title": "miss","first": "Stella","last": "Bonheim"},
+							  "dob": {"date":"1987-12-21T14:48:00"},
+							  "picture": {"large": "https://randomuser.me/api/portraits/women/50.jpg",
+								  "medium": "https://randomuser.me/api/portraits/med/women/50.jpg",
+								  "thumbnail":"https://randomuser.me/api/portraits/thumb/women/50.jpg"},
+							  "nat": "CA"
+						  },
+							{
+							  "id": "123456789",
+							  "gender": "female",
+							  "name": {"title": "miss","first": "ramona","last": "carter"},
+							  "dob": {"date":"2011-12-25T14:48:00"},
+							  "picture": {"large": "https://randomuser.me/api/portraits/women/90.jpg",
+								  "medium": "https://randomuser.me/api/portraits/med/women/90.jpg",
+								  "thumbnail":"https://randomuser.me/api/portraits/thumb/women/90.jpg"},
+							  "nat": "USA"
+						  },
+							{
+							  "id": "123456789",
+							  "gender": "male",
+							  "name": {"title": "mr","first": "arthur","last": "fontina"},
+							  "dob": {"date":"1956-01-15T14:48:00"},
+							  "picture": {"large": "https://randomuser.me/api/portraits/men/90.jpg",
+								  "medium": "https://randomuser.me/api/portraits/med/men/90.jpg",
+								  "thumbnail":"https://randomuser.me/api/portraits/thumb/men/90.jpg"},
+							  "nat": "USA"
+						  },
+							]
+					  }
+					);
 				});
 
 		// Setting up resize listener for confetti
 		window.addEventListener('resize', this.resize);
 		this.resize();
 
-		// Seed data for testing (randomuser.me was down for a day)
-		//=========================================================
-	  // this.setState(
-		//   { users: [
-		//   	{
-		// 		  "id": "123456789",
-		// 		  "gender": "female",
-		// 		  "name": {"title": "miss","first": "Stella","last": "Bonheim"},
-		// 		  "dob": {"date":"1987-12-21T14:48:00"},
-		// 		  "picture": {"large": "https://randomuser.me/api/portraits/women/50.jpg",
-		// 			  "medium": "https://randomuser.me/api/portraits/med/women/50.jpg",
-		// 			  "thumbnail":"https://randomuser.me/api/portraits/thumb/women/50.jpg"},
-		// 		  "nat": "CA"
-		// 	  },
-		// 		{
-		// 		  "id": "123456789",
-		// 		  "gender": "female",
-		// 		  "name": {"title": "miss","first": "ramona","last": "carter"},
-		// 		  "dob": {"date":"2011-12-25T14:48:00"},
-		// 		  "picture": {"large": "https://randomuser.me/api/portraits/women/90.jpg",
-		// 			  "medium": "https://randomuser.me/api/portraits/med/women/90.jpg",
-		// 			  "thumbnail":"https://randomuser.me/api/portraits/thumb/women/90.jpg"},
-		// 		  "nat": "USA"
-		// 	  },
-		// 		{
-		// 		  "id": "123456789",
-		// 		  "gender": "male",
-		// 		  "name": {"title": "mr","first": "arthur","last": "fontina"},
-		// 		  "dob": {"date":"1956-01-15T14:48:00"},
-		// 		  "picture": {"large": "https://randomuser.me/api/portraits/men/90.jpg",
-		// 			  "medium": "https://randomuser.me/api/portraits/med/men/90.jpg",
-		// 			  "thumbnail":"https://randomuser.me/api/portraits/thumb/men/90.jpg"},
-		// 		  "nat": "USA"
-		// 	  },
-		// 		]
-		//   }
-	  // );
+
   }
   render() {
 		let userList = this.state.users.length > 0 ? this.state.users.map((step, i) => {
@@ -204,7 +200,6 @@ class BirthdayList extends React.Component {
 					tweenDuration={200}
 				/>
 				<div id='cake-box'>
-
 					<div id='candles-container'>
 						<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
 						<img className='candle' src={candle} alt={'An illustration of a candle'}></img>
@@ -233,6 +228,5 @@ class BirthdayList extends React.Component {
 		);
   };
 }
-
 
 export default BirthdayList;
