@@ -48,10 +48,6 @@ $candle-yellow: #F8E71C;
 }
 @include font-face("Tofino-Regular", "assets/fonts/TofinoProPersonal-Regular", 400, normal, otf);
 @include font-face("Tofino-Wide-Ultra", "assets/fonts/TofinoProPersonalWide-Ultra", 800, normal, otf);
-@include font-face("Tofino-Wide-Thin", "assets/fonts/TofinoProPersonalWide-Thin", 400, normal, otf);
-@include font-face("Tofino-Semibold", "assets/fonts/TofinoProPersonalCond-Semibold", 800, bold, otf);
-@include font-face("Tofino-Light", "assets/fonts/TofinoProPersonalCond-Light", 100, bold, otf);
-@include font-face("Tofino-Medium", "assets/fonts/TofinoProPersonalCond-Medium", 300, bold, otf);
 @include font-face("Tofino-Narrow-Medium", "assets/fonts/TofinoProPersonalNarrow-Book", 300, bold, otf);
 
 @mixin header-font() {
@@ -199,6 +195,23 @@ body {
             background-color: $dark-blue;
             width: 10%;
             height: 50px;
+          }
+          &.desc {
+            &:before {
+              position: absolute;
+              display: block;
+              //flex: 0 1 auto;
+              bottom: -35%;
+              left: 45%;
+              content: '';
+              clip-path: polygon(50% 0%, 0 25%, 100% 25%);
+              background-color: $dark-blue;
+              width: 10%;
+              height: 50px;
+            }
+            &:after {
+              display: none;
+            }
           }
         }
 

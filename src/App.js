@@ -15,7 +15,9 @@ class BirthdayList extends React.Component {
 		this.state = {
 			users: [],
 			windowWidth: window.innerWidth,
-			windowHeight: window.innerHeight
+			windowHeight: window.innerHeight,
+			sorted: false,
+			asc: true
 		};
 	}
 	sortUsers() {
@@ -42,12 +44,22 @@ class BirthdayList extends React.Component {
 				}
 			}
 
-		const sortedUsers = this.state.users.slice();
-		sortedUsers.sort(sortByBirthday());
-		this.setState(
-			{
-				users: sortedUsers
-			});
+		if (!this.state.sorted) {
+			const sortedUsers = this.state.users.slice();
+			sortedUsers.sort(sortByBirthday());
+			this.setState(
+				{
+					users: sortedUsers,
+					sorted: true,
+					asc: false
+				});
+		} else {
+			this.setState({
+				users: this.state.users.slice().reverse(),
+				asc: !this.state.asc ? true : false
+			})
+		}
+
 	}
 	checkBirthday(birthdayMonth, birthdayDay) {
 		let today = new Date();
@@ -189,6 +201,7 @@ class BirthdayList extends React.Component {
 					numberOfPieces={100}
 					wind={0}
 					colors={['#48C1EC', '#18518F', '#FFC0BD', '#D0021B', '#71DAE6', '#81E255', '#F5A623', '#F8E71C']}
+					tweenDuration={200}
 				/>
 				<div id='cake-box'>
 
@@ -207,10 +220,10 @@ class BirthdayList extends React.Component {
 							<h1>Birthday Tracker</h1>
 						</div>
 						<div id='user-list'>
-							<button id='sort-button'
+							<button id='sort-button' className={this.state.asc ? 'asc' : 'desc'}
 								onClick={()=>this.sortUsers()}
 							>
-								Sort by birthday month
+								Sort by birthday month {this.state.asc ? '(ASC)' : '(DESC)'}
 							</button>
 							{userList}
 						</div>
