@@ -6,6 +6,74 @@ import Confetti from 'react-confetti';
 import _debounce from 'lodash.debounce'
 const randomUserUrl = 'https://randomuser.me/api/?results=20&nat=us,ca&inc=id,name,gender,nat,dob,picture&noinfo';
 
+function User(props) {
+	const checkBirthday = function(birthdayMonth, birthdayDay) {
+		let today = new Date();
+		let todayMonth = today.getMonth();
+		let todayDay = today.getDate();
+
+		if (todayMonth === birthdayMonth && todayDay === birthdayDay) {
+			return {
+				msg: "Birthday Today!",
+				class: 'today'
+			};
+		} else if (todayMonth <= birthdayMonth) {
+			if (todayDay < birthdayDay) {
+				return {
+					msg: "Birthday Upcoming",
+					class: 'upcoming'
+				};
+			} else {
+				return {
+					msg: "Birthday Passed",
+					class: 'passed'
+				};
+			}
+		} else {
+			return {
+				msg: "Birthday Passed",
+				class: 'passed'
+			};
+		}
+	}
+	const user = props.user;
+	let dob = new Date(user.dob.date);
+	let birthdayMonth = dob.getMonth();
+	let birthdayDay = dob.getDate();
+	let birthdayYear = dob.getUTCFullYear();
+	let birthdayStatus = checkBirthday(birthdayMonth, birthdayDay);
+	return (
+		<div className='user-card'>
+			<div className={`birthday-status ${birthdayStatus.class}`}>
+				<p className={'status'}>{birthdayStatus.msg}:</p>
+				<p className={'birthday'}>{dob.toLocaleString('default', { month: 'long' })} {birthdayDay}</p>
+			</div>
+			<div className="user-info">
+				<div className="user-pic">
+					<div className='pic-wrapper'>
+						<img className='pic' src={user.picture.large} alt={`A portrait of: ${user.name.first} ${user.name.last}`}></img>
+					</div>
+				</div>
+				<div className='name-nat'>
+					<p className="name">
+						{user.name.first} {user.name.last}
+					</p>
+					<span className="bio-info">
+							<p className="gender">
+								{user.gender}
+							</p>
+							<p className="nat">
+								from {user.nat === 'CA' ? 'Canada': 'USA'}
+							</p>
+							<p className="dob">
+								Born: {dob.toLocaleString('default', { month: 'long' })} {birthdayDay}, {birthdayYear}
+							</p>
+						</span>
+				</div>
+			</div>
+		</div>
+	);
+}
 class BirthdayList extends React.Component {
 	constructor(props) {
 		super(props);
@@ -57,35 +125,6 @@ class BirthdayList extends React.Component {
 			})
 		}
 
-	}
-	checkBirthday(birthdayMonth, birthdayDay) {
-		let today = new Date();
-		let todayMonth = today.getMonth();
-		let todayDay = today.getDate();
-
-		if (todayMonth === birthdayMonth && todayDay === birthdayDay) {
-			return {
-				msg: "Birthday Today!",
-				class: 'today'
-			};
-		} else if (todayMonth <= birthdayMonth) {
-			if (todayDay < birthdayDay) {
-				return {
-					msg: "Birthday Upcoming",
-					class: 'upcoming'
-				};
-			} else {
-				return {
-					msg: "Birthday Passed",
-					class: 'passed'
-				};
-			}
-		} else {
-			return {
-				msg: "Birthday Passed",
-				class: 'passed'
-			};
-		}
 	}
 	resize = _debounce(
 		() =>
@@ -147,47 +186,13 @@ class BirthdayList extends React.Component {
 		window.addEventListener('resize', this.resize);
 		this.resize();
 
-
   }
   render() {
 		let userList = this.state.users.length > 0 ? this.state.users.map((step, i) => {
-		let user = this.state.users[i];
-		let dob = new Date(user.dob.date);
-		let birthdayMonth = dob.getMonth();
-		let birthdayDay = dob.getDate();
-		let birthdayYear = dob.getUTCFullYear();
-		let birthdayStatus = this.checkBirthday(birthdayMonth, birthdayDay);
-		return (
-			<div className='user-card' key={user.dob.date}>
-				<div className={`birthday-status ${birthdayStatus.class}`}>
-					<p className={'status'}>{birthdayStatus.msg}:</p>
-					<p className={'birthday'}>{dob.toLocaleString('default', { month: 'long' })} {birthdayDay}</p>
-				</div>
-				<div className="user-info">
-					<div className="user-pic">
-						<div className='pic-wrapper'>
-							<img className='pic' src={user.picture.large} alt={`A portrait of: ${user.name.first} ${user.name.last}`}></img>
-						</div>
-					</div>
-					<div className='name-nat'>
-						<p className="name">
-							{user.name.first} {user.name.last}
-						</p>
-						<span className="bio-info">
-							<p className="gender">
-								{user.gender}
-							</p>
-							<p className="nat">
-								from {user.nat === 'CA' ? 'Canada': 'USA'}
-							</p>
-							<p className="dob">
-								Born: {dob.toLocaleString('default', { month: 'long' })} {birthdayDay}, {birthdayYear}
-							</p>
-						</span>
-					</div>
-				</div>
-			</div>
-		)
+			let user = this.state.users[i];
+			return (
+				<User user={this.state.users[i]} key={user.dob.date} />
+			)
 		}) : null;
 		return (
 			<div id='confetti-container'>
