@@ -75,12 +75,17 @@ body {
   background-color: $background-blue;
   @include header-font();
 
+  canvas {
+    z-index: 1;
+  }
+
   #cake-box {
     position: relative;
     display: flex;
     height: 100%;
     width: 100%;
     flex-direction: column;
+    z-index: 2;
 
     #candles-container {
       position: relative;

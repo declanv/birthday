@@ -7,6 +7,8 @@ import Confetti from 'react-confetti';
 import _debounce from 'lodash.debounce'
 const randomUserUrl = 'https://randomuser.me/api/?results=20&nat=us,ca&inc=id,name,gender,nat,dob,picture&noinfo';
 
+
+
 class BirthdayList extends React.Component {
 	constructor(props) {
 		super(props);
@@ -139,7 +141,6 @@ class BirthdayList extends React.Component {
 	  // );
   }
   render() {
-  	console.log(`here is the state.width: ${this.state.windowWidth}`);
 		let userList = this.state.users.length > 0 ? this.state.users.map((step, i) => {
 		let user = this.state.users[i];
 		let dob = new Date(user.dob.date);
@@ -184,6 +185,9 @@ class BirthdayList extends React.Component {
 				<Confetti
 					width={this.state.windowWidth}
 					height={this.state.windowHeight}
+					numberOfPieces={100}
+					wind={0}
+					colors={['#48C1EC', '#18518F', '#FFC0BD', '#D0021B', '#71DAE6', '#81E255', '#F5A623', '#F8E71C']}
 				/>
 				<div id='cake-box'>
 
