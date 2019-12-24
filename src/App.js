@@ -18,7 +18,6 @@ class BirthdayList extends React.Component {
 			windowHeight: window.innerHeight
 		};
 	}
-
 	sortUsers() {
 		const sortByBirthday = () =>
 			(a, b) => {
@@ -49,7 +48,6 @@ class BirthdayList extends React.Component {
 			{
 				users: sortedUsers
 			});
-
 	}
 	checkBirthday(birthdayMonth, birthdayDay) {
 		let today = new Date();
@@ -84,7 +82,10 @@ class BirthdayList extends React.Component {
 	}
 	resize = _debounce(
 		() =>
-			this.setState({windowWidth: window.innerWidth})
+			this.setState({
+				windowWidth: window.innerWidth,
+				windowHeight: document.getElementById('cake').offsetHeight
+			})
 		,100)
 	componentWillUnmount() {
 		window.removeEventListener('resize', this.resize);
@@ -98,7 +99,7 @@ class BirthdayList extends React.Component {
 					console.log(error);
 				});
 
-
+		// Setting up resize listener for confetti
 		window.addEventListener('resize', this.resize);
 		this.resize();
 
