@@ -7,6 +7,12 @@ import _debounce from 'lodash.debounce'
 const randomUserUrl = 'https://randomuser.me/api/?results=20&nat=us,ca&inc=id,name,gender,nat,dob,picture&noinfo';
 
 function User(props) {
+	const user = props.user;
+	let dob = new Date(user.dob.date);
+	let birthdayMonth = dob.getMonth();
+	let birthdayDay = dob.getDate();
+	let birthdayYear = dob.getUTCFullYear();
+	let birthdayStatus = checkBirthday(birthdayMonth, birthdayDay);
 	const checkBirthday = function(birthdayMonth, birthdayDay) {
 		let today = new Date();
 		let todayMonth = today.getMonth();
@@ -36,12 +42,6 @@ function User(props) {
 			};
 		}
 	}
-	const user = props.user;
-	let dob = new Date(user.dob.date);
-	let birthdayMonth = dob.getMonth();
-	let birthdayDay = dob.getDate();
-	let birthdayYear = dob.getUTCFullYear();
-	let birthdayStatus = checkBirthday(birthdayMonth, birthdayDay);
 	return (
 		<div className='user-card'>
 			<div className={`birthday-status ${birthdayStatus.class}`}>
