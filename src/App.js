@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // import ReactDOM from 'react-dom';
 import axios from 'axios';
 import './App.scss';
@@ -7,17 +7,17 @@ import Confetti from 'react-confetti';
 import _debounce from 'lodash.debounce'
 const randomUserUrl = 'https://randomuser.me/api/?results=20&nat=us,ca&inc=id,name,gender,nat,dob,picture&noinfo';
 
-
 class BirthdayList extends React.Component {
-  constructor(props) {
+	constructor(props) {
 		super(props);
 		this.state = {
-			users : [],
+			users: [],
 			windowWidth: window.innerWidth,
 			windowHeight: window.innerHeight
 		};
-  }
-  sortUsers() {
+	}
+
+	sortUsers() {
 		const sortByBirthday = () =>
 			(a, b) => {
 				let aDob = new Date(a['dob']['date']);
@@ -45,42 +45,48 @@ class BirthdayList extends React.Component {
 		sortedUsers.sort(sortByBirthday());
 		this.setState(
 			{
-			users: sortedUsers
-		});
+				users: sortedUsers
+			});
 
 	}
-  checkBirthday(birthdayMonth, birthdayDay) {
-	let today = new Date();
-	let todayMonth = today.getMonth();
-	let todayDay = today.getDate();
+	checkBirthday(birthdayMonth, birthdayDay) {
+		let today = new Date();
+		let todayMonth = today.getMonth();
+		let todayDay = today.getDate();
 
-	if (todayMonth === birthdayMonth && todayDay === birthdayDay) {
-	  return {
-	  	msg: "Birthday Today!",
-			class: 'today'
-		};
-	//  Re-read the instructions: this is much simpler than I thought: we're only checking for the current year, not future years also
-	} else if (todayMonth <= birthdayMonth) {
-
-		if (todayDay < birthdayDay) {
+		if (todayMonth === birthdayMonth && todayDay === birthdayDay) {
 			return {
-				msg: "Birthday Upcoming",
-				class: 'upcoming'
+				msg: "Birthday Today!",
+				class: 'today'
 			};
+			//  Re-read the instructions: this is much simpler than I thought: we're only checking for the current year, not future years also
+		} else if (todayMonth <= birthdayMonth) {
+
+			if (todayDay < birthdayDay) {
+				return {
+					msg: "Birthday Upcoming",
+					class: 'upcoming'
+				};
+			} else {
+				return {
+					msg: "Birthday Passed",
+					class: 'passed'
+				};
+			}
 		} else {
 			return {
 				msg: "Birthday Passed",
 				class: 'passed'
 			};
 		}
-	} else {
-	  return {
-	  	msg: "Birthday Passed",
-			class: 'passed'
-		};
 	}
-
-  }
+	resize = _debounce(
+		() =>
+			this.setState({windowWidth: window.innerWidth})
+		,100)
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.resize);
+	}
   componentDidMount() {
 		axios.get(randomUserUrl)
 				.then(response => {
@@ -89,7 +95,13 @@ class BirthdayList extends React.Component {
 				.catch(error => {
 					console.log(error);
 				});
+
+
+		window.addEventListener('resize', this.resize);
+		this.resize();
+
 		// Seed data for testing (randomuser.me was down for a day)
+		//=========================================================
 	  // this.setState(
 		//   { users: [
 		//   	{
@@ -127,7 +139,7 @@ class BirthdayList extends React.Component {
 	  // );
   }
   render() {
-
+  	console.log(`here is the state.width: ${this.state.windowWidth}`);
 		let userList = this.state.users.length > 0 ? this.state.users.map((step, i) => {
 		let user = this.state.users[i];
 		let dob = new Date(user.dob.date);
@@ -170,8 +182,8 @@ class BirthdayList extends React.Component {
 		return (
 			<div id='confetti-container'>
 				<Confetti
-					width={windowWidth}
-					height={windowHeight}
+					width={this.state.windowWidth}
+					height={this.state.windowHeight}
 				/>
 				<div id='cake-box'>
 
