@@ -175,6 +175,7 @@ body {
           @include button-font();
           font-size: 12px;
           letter-spacing: 3px;
+          border: none;
           &:focus,
           &:active {
             outline-color: $cake-pink;
@@ -329,9 +330,14 @@ body {
 
             .user-pic {
               position: relative;
-              display: block;
+              display: flex;
               width: 40%;
+              height: 100%;
               flex: 0 1 auto;
+              flex-direction: column;
+              align-items: center;
+              justify-content: space-around;
+              align-content: space-around;
 
               .pic-wrapper {
                 position: relative;
@@ -341,6 +347,8 @@ body {
                 overflow: hidden;
                 max-width: 150px;
                 margin: 0 auto;
+                align-self: center;
+                flex: 0 1 auto;
                 //border: 3px solid $background-blue;
 
                 .pic {
@@ -370,12 +378,6 @@ body {
             top: 50%;
             left: 0;
           }
-          //&:after {
-          //  height: 100%;
-          //  width: 5px;
-          //  top: 0;
-          //  left: 40%;
-          //}
         }
       }
 
@@ -428,9 +430,9 @@ body {
             width: 100%;
             margin: 100px 0;
             .birthday-status {
-              width: 101%;
+              width: 102%;
               top: -16%;
-              left: -1%;
+              left: -2%;
               font-size: 12px;
             }
 
@@ -448,6 +450,7 @@ body {
                   .dob {
                     display: inline;
                     width: auto;
+                    margin: 0;
                   }
                 }
               }
@@ -456,29 +459,33 @@ body {
         }
       }
 
-      @media (max-width: 650px) {
-
-      }
-
     }
 
     @media (max-width: 650px) {
 
       #candles-container {
-        width: 30%;
+        width: 60%;
         align-items: center;
         justify-content: space-around;
         align-content: space-around;
-        .candle {
-          &:last-of-type,
-          &:first-of-type {
-            display: none;
-          }
-        }
       }
       #cake {
+        border-radius: 50px 50px 0 0;
+
+        #frosting-container {
+          #frosting {
+            border-radius: 50px 50px 0 0;
+          }
+        }
+
         #title-container {
           margin-top: 15%;
+        }
+
+        #user-list {
+          #sort-button {
+            width: 100%;
+          }
         }
       }
     }
@@ -486,26 +493,35 @@ body {
 
       #candles-container {
         align-items: center;
-        justify-content: center;
-        align-content: center;
+        justify-content: space-around;
+        align-content: space-around;
+        width: 80%;
         .candle {
-          display: none;
-          &:last-of-type {
-            display: block;
-
+          &:last-of-type,
+          &:first-of-type {
+            display: none;
           }
         }
       }
 
       #cake {
+
+        border-radius: 30px 30px 0 0;
+
+        #frosting-container {
+          #frosting {
+            border-radius: 30px 30px 0 0;
+          }
+        }
+
         #title-container {
           font-size: 18px;
-          margin-top: 15%;
+          margin-top: 20%;
         }
 
         #user-list {
           #sort-button {
-            width: 100%;
+            font-size: 10px;
           }
 
           .user-card {
@@ -515,6 +531,13 @@ body {
             .user-info {
               .user-pic {
                 width: 45%;
+                align-items: flex-start;
+                justify-content: flex-start;
+                align-content: flex-start;
+                .pic-wrapper {
+                  margin: 10% auto;
+                  align-self: flex-start;
+                }
               }
               .name-nat {
                 width: 55%;
