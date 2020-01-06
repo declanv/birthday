@@ -8,22 +8,22 @@ const randomUserUrl = 'https://randomuser.me/api/?results=20&nat=us,ca&inc=id,na
 
 function User(props) {
 	const user = props.user;
-	let dob = new Date(user.dob.date);
-	let birthdayMonth = dob.getMonth();
-	let birthdayDay = dob.getDate();
-	let birthdayYear = dob.getUTCFullYear();
+	const dob = new Date(user.dob.date);
+	const birthdayMonth = dob.getMonth();
+	const birthdayDay = dob.getDate();
+	const birthdayYear = dob.getUTCFullYear();
+
 	const checkBirthday = function(birthdayMonth, birthdayDay) {
 		let today = new Date();
 		let todayMonth = today.getMonth();
 		let todayDay = today.getDate();
-
-		if (todayMonth === birthdayMonth && todayDay === birthdayDay) {
-			return {
-				msg: "Birthday Today!",
-				class: 'today'
-			};
-		} else if (todayMonth <= birthdayMonth) {
-			if (todayDay < birthdayDay) {
+		if (todayMonth === birthdayMonth) {
+			if (todayDay === birthdayDay) {
+				return {
+					msg: "Birthday Today!",
+					class: 'today'
+				};
+			} else if (todayDay < birthdayDay) {
 				return {
 					msg: "Birthday Upcoming",
 					class: 'upcoming'
@@ -34,10 +34,15 @@ function User(props) {
 					class: 'passed'
 				};
 			}
-		} else {
+		} else if (todayMonth > birthdayMonth) {
 			return {
 				msg: "Birthday Passed",
 				class: 'passed'
+			};
+		} else {
+			return {
+				msg: "Birthday Upcoming",
+				class: 'upcoming'
 			};
 		}
 	}
